@@ -39,6 +39,14 @@ export class ListComponent implements OnInit, OnDestroy {
     );
   }
 
+  editCar(car: Car) {
+    console.log('Edit car: ', car);
+  }
+
+  deleteCar(car: Car) {
+    console.log('Delete car: ', car);
+  }
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }

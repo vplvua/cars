@@ -3,9 +3,29 @@ import { NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatCardContent } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  imports: [MatInputModule, MatSortModule, MatTableModule],
-  exports: [MatInputModule, MatSortModule, MatTableModule],
+  imports: [
+    MatInputModule,
+    MatSortModule,
+    MatTableModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule,
+  ],
+  exports: [
+    MatInputModule,
+    MatSortModule,
+    MatTableModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule,
+  ],
 })
 export class MaterialModule {}

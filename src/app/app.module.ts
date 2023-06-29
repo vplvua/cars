@@ -8,9 +8,10 @@ import { ListComponent } from './list/list.component';
 import { DataStorageService } from './shared/data-storage.service';
 import { MaterialModule } from './material.module';
 import { FetchDataInterceptor } from './shared/fetch-data.interceptor';
+import { DropdownComponent } from './list/dropdown/dropdown.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent],
+  declarations: [AppComponent, ListComponent, DropdownComponent],
   imports: [
     BrowserModule,
     MaterialModule,
