@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="brand">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+    <td mat-cell *matCellDef="let car">{{ car.brand }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Model</th>
+    <td mat-cell *matCellDef="let car">{{ car.model }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
+    <td mat-cell *matCellDef="let car">{{ car.color }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
+    <td mat-cell *matCellDef="let car">{{ car.year }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="vin">
+    <th mat-header-cell *matHeaderCellDef>VIN</th>
+    <td mat-cell *matCellDef="let car">{{ car.vin }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+    <td mat-cell *matCellDef="let car">{{ car.price }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="availability">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Availability</th>
+    <td mat-cell *matCellDef="let car">{{ car.availability }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let car">Actions</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
