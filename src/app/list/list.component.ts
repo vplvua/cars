@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Car } from '../shared/interfaces';
 import { DataStorageService } from '../shared/data-storage.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { EditComponent } from './edit/edit.component';
 
 @Component({
   selector: 'app-list',
@@ -46,6 +47,11 @@ export class ListComponent implements OnInit, OnDestroy {
 
   editCar(car: Car) {
     console.log('Edit car: ', car);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { ...car };
+
+    const dialogRef = this.dialog.open(EditComponent, dialogConfig);
   }
 
   deleteCar(car: Car) {

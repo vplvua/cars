@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Edit item</h1>
+<div mat-dialog-content class="description">
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Brand name</mat-label>
+        <input matInput placeholder="Brand name" formControlName="brand" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Model name</mat-label>
+        <input matInput placeholder="Model name" formControlName="model" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <input matInput placeholder="Color" formControlName="color" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Year of production</mat-label>
+        <input
+          matInput
+          placeholder="Year of production"
+          formControlName="year"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>VIN</mat-label>
+        <input matInput placeholder="VIN" formControlName="vin" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="0"
+          formControlName="price"
+          (input)="onPriceInput($event)"
+        />
+        <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Availability</mat-label>
+        <mat-select formControlName="availability">
+          <mat-option value="true">Available</mat-option>
+          <mat-option value="false">Unavailable</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="" color="accent">Save</button>
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+</mat-dialog-actions>
