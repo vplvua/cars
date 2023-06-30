@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  z-index: 1;
+  position: relative;
+  padding: 0 1rem;
+  margin-top: 2rem;
+
+  .header__title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .header__search,
+  .header__title,
+  .header__add {
+    width: 30%;
+    display: flex;
+  }
+
+  .header__search {
+    justify-content: flex-start;
+  }
+
+  .header__title {
+    justify-content: center;
+  }
+
+  .header__add {
+    justify-content: flex-end;
+  }
+}

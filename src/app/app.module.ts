@@ -12,6 +12,7 @@ import { FetchDataInterceptor } from './shared/fetch-data.interceptor';
 import { DropdownComponent } from './list/dropdown/dropdown.component';
 import { DeleteModalComponent } from './list/delete-modal/delete-modal.component';
 import { EditComponent } from './list/edit/edit.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditComponent } from './list/edit/edit.component';
     DropdownComponent,
     DeleteModalComponent,
     EditComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div class="header">
+  <div class="header__search">
+    <mat-form-field id="searchField">
+      <input
+        matInput
+        (keyup)="onSearch()"
+        [formControl]="searchFormControl"
+        placeholder="Find car"
+      />
+      <mat-hint align="start">Minimum 3 letters.</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="header__title">
+    <h1>Cars list</h1>
+  </div>
+  <div class="header__add">
+    <!-- <button mat-raised-button color="primary" (click)="openDialog()"> -->
+    <button mat-raised-button color="primary">Add car</button>
+  </div>
+</div>

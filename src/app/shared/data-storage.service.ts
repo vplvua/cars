@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, map } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Car } from './interfaces';
@@ -9,6 +9,7 @@ import { Car } from './interfaces';
 })
 export class DataStorageService {
   carsList: Subject<Car[]> = new Subject<Car[]>();
+  searchQuery$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -46,6 +47,37 @@ export class DataStorageService {
 
       .subscribe((carsList) => {
         this.carsList.next(carsList);
+      });
+  }
+
+  searchCarsList(searchTerm: string): void {
+    this.searchQuery$.next(searchTerm);
+    this.carsList
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        map((cars) => {
+          return cars.filter((car) => {
+            return (
+              car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              car.color.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              car.year
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()) ||
+              car.vin.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              car.price.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              car.availability
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            );
+          });
+        })
+      )
+      .subscribe((filteredCars) => {
+        this.carsList.next(filteredCars);
       });
   }
 }
