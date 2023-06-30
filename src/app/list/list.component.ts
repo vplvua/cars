@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Car } from '../shared/interfaces';
 import { DataStorageService } from '../shared/data-storage.service';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-list',
@@ -28,7 +30,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.dataStorageService.getCarsList();
@@ -45,6 +50,11 @@ export class ListComponent implements OnInit, OnDestroy {
 
   deleteCar(car: Car) {
     console.log('Delete car: ', car);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { ...car };
+
+    const dialogRef = this.dialog.open(DeleteModalComponent, dialogConfig);
   }
 
   ngAfterViewInit() {
