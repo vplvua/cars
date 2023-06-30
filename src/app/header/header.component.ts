@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { DataStorageService } from '../shared/data-storage.service';
-import { FormControl, Validators } from '@angular/forms';
+import { EditComponent } from '../list/edit/edit.component';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,10 @@ export class HeaderComponent {
   searchQuery$ = new Subject<string>();
   searchFormControl = new FormControl('', [Validators.minLength(3)]);
 
-  constructor(private dataStorageService: DataStorageService) {
+  constructor(
+    private dataStorageService: DataStorageService,
+    private dialog: MatDialog
+  ) {
     this.searchFormControl.valueChanges
       .pipe(
         debounceTime(300),
@@ -37,5 +42,22 @@ export class HeaderComponent {
       this.searchQuery$.next('');
       this.dataStorageService.searchCarsList('');
     }
+  }
+
+  openAddItemWindow() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      editMode: false,
+      id: null,
+      brand: '',
+      model: '',
+      color: '',
+      year: '',
+      vin: '',
+      price: '0',
+      availability: false,
+    };
+
+    const dialogRef = this.dialog.open(EditComponent, dialogConfig);
   }
 }

@@ -10,26 +10,43 @@ import { Car } from 'src/app/shared/interfaces';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    brand: new FormControl(this.passedData.brand, Validators.required),
-    model: new FormControl(this.passedData.model, Validators.required),
-    color: new FormControl(this.passedData.color, Validators.required),
-    year: new FormControl(this.passedData.year, Validators.required),
-    vin: new FormControl(this.passedData.vin, [
-      Validators.required,
-      Validators.pattern(/^[A-Z0-9]{17}$/),
-    ]),
-    price: new FormControl(parseFloat(this.passedData.price.replace('$', '')), [
-      Validators.required,
-      Validators.pattern(/^\d+(\.\d{1,2})?$/),
-    ]),
-    availability: new FormControl(
-      this.passedData.availability.toString(),
-      Validators.required
-    ),
-  });
+  editMode: boolean;
+  form: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public passedData: Car) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public passedData: Car & { editMode: boolean }
+  ) {
+    console.log(passedData);
+    this.editMode = passedData.editMode;
+
+    this.form = new FormGroup({
+      brand: new FormControl(
+        { value: this.passedData.brand, disabled: this.editMode },
+        Validators.required
+      ),
+      model: new FormControl(
+        { value: this.passedData.model, disabled: this.editMode },
+        Validators.required
+      ),
+      color: new FormControl(this.passedData.color, Validators.required),
+      year: new FormControl(
+        { value: this.passedData.year, disabled: this.editMode },
+        Validators.required
+      ),
+      vin: new FormControl(
+        { value: this.passedData.vin, disabled: this.editMode },
+        [Validators.required, Validators.pattern(/^[A-Z0-9]{17}$/)]
+      ),
+      price: new FormControl(
+        parseFloat(this.passedData.price.replace('$', '')),
+        [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]
+      ),
+      availability: new FormControl(
+        this.passedData.availability.toString(),
+        Validators.required
+      ),
+    });
+  }
 
   ngOnInit(): void {
     this.form.patchValue({

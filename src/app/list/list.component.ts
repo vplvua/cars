@@ -65,17 +65,13 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   editCar(car: Car) {
-    console.log('Edit car: ', car);
-
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { ...car };
+    dialogConfig.data = { editMode: true, ...car };
 
     const dialogRef = this.dialog.open(EditComponent, dialogConfig);
   }
 
   deleteCar(car: Car) {
-    console.log('Delete car: ', car);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { ...car };
 
