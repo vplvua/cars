@@ -18,14 +18,15 @@ export class ListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     'brand',
     'model',
+    'vin',
     'color',
     'year',
-    'vin',
     'price',
     'availability',
     'actions',
   ];
   dataSource = new MatTableDataSource<Car>();
+  isLoading = false;
 
   subscription: Subscription = new Subscription();
 

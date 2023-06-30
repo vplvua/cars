@@ -18,7 +18,7 @@ export class FetchDataInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const modifiedRequest = request.clone({
-      url: `${request.url}?token=${environment.token}`,
+      url: `${request.url}?token=${environment.API_KEY}`,
     });
 
     return next.handle(modifiedRequest);
