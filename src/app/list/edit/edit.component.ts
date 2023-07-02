@@ -107,10 +107,4 @@ export class EditComponent implements OnInit {
       this.dialogRef.close(editedCar);
     }
   }
-
-  formConsole() {
-    console.log(this.form);
-    console.log(this.form.value);
-    console.log('vin:', this.form.get('vin'));
-  }
 }
