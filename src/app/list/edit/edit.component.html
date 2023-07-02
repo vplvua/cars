@@ -48,6 +48,13 @@
   </mat-dialog-content>
 </div>
 <mat-dialog-actions align="end">
-  <button mat-raised-button [mat-dialog-close]="" color="accent">Save</button>
+  <button
+    mat-raised-button
+    [disabled]="!form.valid"
+    color="accent"
+    (click)="saveChanges()"
+  >
+    Save
+  </button>
   <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
 </mat-dialog-actions>

@@ -59,5 +59,9 @@ export class HeaderComponent {
     };
 
     const dialogRef = this.dialog.open(EditComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dataStorageService.addCar(result);
+    });
   }
 }

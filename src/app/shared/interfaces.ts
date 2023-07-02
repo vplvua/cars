@@ -7,4 +7,5 @@ export interface Car {
   vin: string;
   price: string;
   availability: boolean;
+  [key: string]: number | string | boolean;
 }

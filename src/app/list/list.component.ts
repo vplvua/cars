@@ -64,6 +64,10 @@ export class ListComponent implements OnInit, OnDestroy {
     dialogConfig.data = { editMode: true, ...car };
 
     const dialogRef = this.dialog.open(EditComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dataStorageService.updateCar(result);
+    });
   }
 
   deleteCar(car: Car) {
