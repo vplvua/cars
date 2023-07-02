@@ -21,11 +21,70 @@
           placeholder="Year of production"
           formControlName="year"
         />
+        <mat-error
+          *ngIf="
+            form.get('year')!.invalid &&
+            form.get('year')!.touched &&
+            form.get('year')!.dirty &&
+            form.get('year')!.errors!['pattern']
+          "
+        >
+          {{ errorMessages["year"] }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get('year')!.invalid &&
+            form.get('year')!.errors!['required'] &&
+            form.get('year')!.touched
+          "
+        >
+          {{ errorMessages["required"] }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>VIN</mat-label>
-        <input matInput placeholder="VIN" formControlName="vin" />
+        <input
+          matInput
+          placeholder="VIN"
+          formControlName="vin"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error
+          *ngIf="
+            form.get('vin')!.invalid &&
+            form.get('vin')!.touched &&
+            form.get('vin')!.dirty &&
+            (form.get('vin')!.errors!['minlength'] ||
+              form.get('vin')!.errors!['maxlength'])
+          "
+        >
+          {{ errorMessages["vin_length"] }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get('vin')!.invalid &&
+            form.get('vin')!.touched &&
+            form.get('vin')!.dirty &&
+            form.get('vin')!.errors!['pattern'] &&
+            !(
+              form.get('vin')!.errors!['minlength'] ||
+              form.get('vin')!.errors!['maxlength']
+            )
+          "
+        >
+          {{ errorMessages["vin_pattern"] }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get('vin')!.invalid &&
+            form.get('vin')!.errors!['required'] &&
+            form.get('vin')!.touched
+          "
+        >
+          {{ errorMessages["required"] }}
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field>
         <mat-label>Price</mat-label>
         <input

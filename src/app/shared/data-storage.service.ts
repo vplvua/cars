@@ -60,6 +60,7 @@ export class DataStorageService {
   }
 
   addCar(newCar: Car): void {
+    if (!newCar) return;
     const carsList = this.carsList$.getValue();
     newCar.id = this.setNewCarId();
     carsList.push(newCar);

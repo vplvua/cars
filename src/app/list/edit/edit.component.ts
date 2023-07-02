@@ -8,6 +8,8 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Car } from 'src/app/shared/interfaces';
+import { FormValidatorsService } from 'src/app/shared/form-validators.service';
+import { errorMessages } from 'src/app/shared/form-validators.service';
 
 @Component({
   selector: 'app-edit',
@@ -18,13 +20,15 @@ export class EditComponent implements OnInit {
   editMode: boolean;
   form: FormGroup;
   originalCar: Car;
+  matcher: FormValidatorsService;
+  errorMessages = errorMessages;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public passedData: Car & { editMode: boolean },
-    private dialogRef: MatDialogRef<EditComponent>,
-    private formBuilder: FormBuilder
+    private dialogRef: MatDialogRef<EditComponent>
   ) {
     this.editMode = passedData.editMode;
+    this.matcher = new FormValidatorsService();
 
     this.form = new FormGroup({
       brand: new FormControl(
@@ -42,7 +46,12 @@ export class EditComponent implements OnInit {
       ),
       vin: new FormControl(
         { value: this.passedData.vin, disabled: this.editMode },
-        [Validators.required, Validators.pattern(/^[A-Z0-9]{17}$/)]
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Z0-9]{17}$/),
+          Validators.maxLength(17),
+          Validators.minLength(17),
+        ]
       ),
       price: new FormControl(
         parseFloat(this.passedData.price.replace('$', '')),
@@ -97,5 +106,11 @@ export class EditComponent implements OnInit {
       );
       this.dialogRef.close(editedCar);
     }
+  }
+
+  formConsole() {
+    console.log(this.form);
+    console.log(this.form.value);
+    console.log('vin:', this.form.get('vin'));
   }
 }
