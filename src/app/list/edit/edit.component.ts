@@ -85,7 +85,7 @@ export class EditComponent implements OnInit {
       }
     });
     newCar.price = `$${parseFloat(newCar.price.toString()).toFixed(2)}`;
-    newCar.availability = !!(newCar.availability.toString() === 'true');
+    newCar.availability = newCar.availability.toString() === 'true';
     return newCar;
   }
 

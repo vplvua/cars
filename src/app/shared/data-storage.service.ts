@@ -48,14 +48,9 @@ export class DataStorageService {
   updateCar(editedCar: Car) {
     const carsList = this.carsList$.getValue();
     const index = carsList.findIndex((car) => car.id === editedCar.id);
-
-    if (index !== -1) {
-      carsList[index] = editedCar;
-      this.carsList$.next(carsList);
-      this.localStorageService.storeData(carsList);
-    } else {
-      console.error('Car not found');
-    }
+    carsList[index] = editedCar;
+    this.carsList$.next(carsList);
+    this.localStorageService.storeData(carsList);
   }
 
   setNewCarId(): number {
@@ -66,10 +61,8 @@ export class DataStorageService {
 
   addCar(newCar: Car): void {
     const carsList = this.carsList$.getValue();
-    console.log('newCar', newCar);
     newCar.id = this.setNewCarId();
     carsList.push(newCar);
-    console.log('carsList', carsList);
     this.carsList$.next(carsList);
     this.localStorageService.storeData(carsList);
   }

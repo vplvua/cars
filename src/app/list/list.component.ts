@@ -3,12 +3,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Subscription, map, startWith, switchMap, tap } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { Car } from '../shared/interfaces';
 import { DataStorageService } from '../shared/data-storage.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { EditComponent } from './edit/edit.component';
-import { FetchDataService } from '../shared/fetch-data.service';
 
 @Component({
   selector: 'app-list',
@@ -31,6 +31,7 @@ export class ListComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dataStorageService: DataStorageService,
@@ -79,6 +80,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = (car, property) => {
       switch (property) {
         case 'brand':
