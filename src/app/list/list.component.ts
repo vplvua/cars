@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Subscription, map, startWith, switchMap } from 'rxjs';
+import { Subscription, map, startWith, switchMap, tap } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Car } from '../shared/interfaces';
 import { DataStorageService } from '../shared/data-storage.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { EditComponent } from './edit/edit.component';
+import { FetchDataService } from '../shared/fetch-data.service';
 
 @Component({
   selector: 'app-list',
@@ -34,13 +35,19 @@ export class ListComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataStorageService: DataStorageService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fetchDataService: FetchDataService
   ) {}
 
   ngOnInit(): void {
-    this.dataStorageService.getCarsList();
     this.subscription.add(
-      this.dataStorageService.carsList
+      this.fetchDataService.isFetching$.subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      })
+    );
+    this.fetchDataService.getCarsList();
+    this.subscription.add(
+      this.fetchDataService.carsList$
         .pipe(
           switchMap((carsList) =>
             this.dataStorageService.searchQuery$.pipe(
@@ -59,7 +66,7 @@ export class ListComponent implements OnInit, OnDestroy {
         )
         .subscribe((carsList) => {
           this.dataSource.data = carsList;
-          this.isLoading = true;
+          this.isLoading = false;
         })
     );
   }

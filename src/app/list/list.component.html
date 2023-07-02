@@ -1,4 +1,4 @@
-<ng-container *ngIf="isLoading">
+<ng-container *ngIf="!isLoading">
   <table mat-table [dataSource]="dataSource" matSort class="custom-table">
     <ng-container matColumnDef="brand">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
@@ -49,7 +49,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </ng-container>
-<ng-container *ngIf="!isLoading">
+<ng-container *ngIf="isLoading">
   <div class="spinner">
     <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
   </div>

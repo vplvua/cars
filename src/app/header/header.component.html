@@ -1,4 +1,7 @@
 <div class="header">
+  <div class="header__title">
+    <h1>Cars list</h1>
+  </div>
   <div class="header__search">
     <mat-form-field id="searchField">
       <input
@@ -10,12 +13,9 @@
       <mat-hint align="start">Minimum 3 letters.</mat-hint>
     </mat-form-field>
   </div>
-  <div class="header__title">
-    <h1>Cars list</h1>
-  </div>
-  <div class="header__add">
-    <button mat-raised-button color="primary" (click)="openAddItemWindow()">
-      Add car
-    </button>
-  </div>
+</div>
+<div class="add-button">
+  <button mat-fab color="accent" (click)="openAddItemWindow()">
+    <mat-icon fontIcon="add"></mat-icon>
+  </button>
 </div>
