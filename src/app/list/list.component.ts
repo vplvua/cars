@@ -27,47 +27,35 @@ export class ListComponent implements OnInit, OnDestroy {
     'actions',
   ];
   dataSource = new MatTableDataSource<Car>();
-  isLoading = false;
-
+  isLoading = true;
   subscription: Subscription = new Subscription();
 
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private dataStorageService: DataStorageService,
-    private dialog: MatDialog,
-    private fetchDataService: FetchDataService
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.subscription.add(
-      this.fetchDataService.isFetching$.subscribe((isLoading) => {
+      this.dataStorageService.isFetching$.subscribe((isLoading) => {
         this.isLoading = isLoading;
       })
     );
-    this.fetchDataService.getCarsList();
+
+    this.dataStorageService.getCarsList();
+
     this.subscription.add(
-      this.fetchDataService.carsList$
-        .pipe(
-          switchMap((carsList) =>
-            this.dataStorageService.searchQuery$.pipe(
-              map((searchQuery) => {
-                if (searchQuery.trim().length === 0) {
-                  return carsList;
-                } else {
-                  return carsList.filter((car) =>
-                    this.searchCar(car, searchQuery.toLowerCase())
-                  );
-                }
-              }),
-              startWith(carsList)
-            )
-          )
-        )
-        .subscribe((carsList) => {
-          this.dataSource.data = carsList;
-          this.isLoading = false;
-        })
+      this.dataStorageService.carsList$.subscribe((carsList) => {
+        this.dataSource.data = carsList;
+      })
+    );
+
+    this.subscription.add(
+      this.dataStorageService.searchQuery$.subscribe((searchQuery) => {
+        this.dataSource.filter = searchQuery.trim().toLowerCase();
+      })
     );
   }
 
@@ -85,20 +73,28 @@ export class ListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DeleteModalComponent, dialogConfig);
   }
 
-  private searchCar(car: Car, searchTerm: string): boolean {
-    return (
-      car.brand.toLowerCase().includes(searchTerm) ||
-      car.model.toLowerCase().includes(searchTerm) ||
-      car.color.toLowerCase().includes(searchTerm) ||
-      car.year.toString().includes(searchTerm) ||
-      car.vin.toLowerCase().includes(searchTerm) ||
-      car.price.toLowerCase().includes(searchTerm) ||
-      car.availability.toString().toLowerCase().includes(searchTerm)
-    );
-  }
-
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (car, property) => {
+      switch (property) {
+        case 'brand':
+          return car.brand.toLowerCase();
+        case 'model':
+          return car.model.toLowerCase();
+        case 'vin':
+          return car.vin.toLowerCase();
+        case 'color':
+          return car.color.toLowerCase();
+        case 'year':
+          return car.year.toString();
+        case 'price':
+          return car.price.toLowerCase();
+        case 'availability':
+          return car.availability.toString().toLowerCase();
+        default:
+          return '';
+      }
+    };
   }
 
   ngOnDestroy(): void {

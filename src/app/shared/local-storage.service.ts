@@ -7,7 +7,18 @@ import { Car } from './interfaces';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  carsList$: Subject<Car[]> = new Subject<Car[]>();
+  private STORAGE_KEY = 'cars';
 
-  constructor() {}
+  storeData(cars: Car[]): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cars));
+  }
+
+  fetchData(): Car[] {
+    const storedData = localStorage.getItem(this.STORAGE_KEY);
+    return storedData ? JSON.parse(storedData) : [];
+  }
+
+  clearData(): void {
+    localStorage.removeItem(this.STORAGE_KEY);
+  }
 }

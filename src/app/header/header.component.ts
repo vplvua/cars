@@ -27,9 +27,9 @@ export class HeaderComponent {
       )
       .subscribe((value) => {
         if (value) {
-          this.dataStorageService.searchCarsList(value);
+          this.searchQuery$.next(value);
         } else {
-          this.dataStorageService.searchCarsList('');
+          this.searchQuery$.next('');
         }
       });
   }
