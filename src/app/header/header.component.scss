@@ -12,13 +12,20 @@
     font-size: 1.8rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.87);
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__img {
+    width: 7rem;
+    margin-right: 1rem;
   }
 
   .header__search,
-  .header__title,
-  .header__add {
-    width: 30%;
+  .header__title {
+    max-width: 50%;
     display: flex;
+    align-items: center;
   }
 
   .header__search {
