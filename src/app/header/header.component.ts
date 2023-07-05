@@ -44,6 +44,12 @@ export class HeaderComponent {
     }
   }
 
+  clearSearch() {
+    this.searchFormControl.setValue('');
+    this.searchQuery$.next('');
+    this.dataStorageService.searchCarsList('');
+  }
+
   openAddItemWindow() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {

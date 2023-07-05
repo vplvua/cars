@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  // height: 4rem;
   z-index: 1;
   position: relative;
   padding: 0 1rem;
-  margin-top: 2rem;
+  margin: 1rem 0;
 
-  .header__title h1 {
+  h1 {
     font-size: 1.8rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.87);
@@ -21,20 +21,17 @@
     margin-right: 1rem;
   }
 
-  .header__search,
-  .header__title {
-    max-width: 50%;
-    display: flex;
-    align-items: center;
-  }
-
   .header__search {
-    justify-content: flex-end;
+    min-width: 40%;
+    // display: flex;
+    // padding: 0.5rem;
+    text-align: right;
+    // align-items: center;
   }
 
-  .header__title {
-    justify-content: flex-start;
-  }
+  // .header__search {
+  //   justify-content: flex-end;
+  // }
 }
 
 .add-button {
@@ -42,4 +39,34 @@
   bottom: 50px;
   right: 50px;
   z-index: 1;
+}
+
+// mat-toolbar {
+//   padding: 1rem;
+// }
+
+.spacer {
+  flex: 1 2 auto;
+}
+
+// img {
+//   width: 7rem;
+//   margin-right: 1rem;
+// }
+
+@media screen and (max-width: 600px) {
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  img {
+    display: none;
+    // height: 1px;
+    // margin: -1px;
+    // overflow: hidden;
+  }
 }

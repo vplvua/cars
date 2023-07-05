@@ -1,8 +1,7 @@
 <div class="header">
-  <div class="header__title">
-    <img src="assets/images/car.svg" alt="Cars list" class="header__img" />
-    <h1>Cars list</h1>
-  </div>
+  <img src="assets/images/car.svg" alt="Cars list" class="header__img" />
+  <h1>Cars list</h1>
+  <span class="spacer"></span>
   <div class="header__search">
     <mat-form-field id="searchField">
       <input
@@ -11,6 +10,15 @@
         [formControl]="searchFormControl"
         placeholder="Find car"
       />
+      <button
+        *ngIf="searchFormControl.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearSearch()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
       <mat-hint align="start">Minimum 3 letters.</mat-hint>
     </mat-form-field>
   </div>
@@ -20,3 +28,28 @@
     <mat-icon fontIcon="add"></mat-icon>
   </button>
 </div>
+<!-- <mat-toolbar>
+  <img src="assets/images/car.svg" alt="Cars list" />
+  <span>Cars list</span>
+  <span class="spacer"></span>
+  <span
+    ><mat-form-field id="searchField">
+      <input
+        matInput
+        (keyup)="onSearch()"
+        [formControl]="searchFormControl"
+        placeholder="Find car"
+      />
+      <button
+        *ngIf="searchFormControl.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearSearch()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint align="start">Minimum 3 letters.</mat-hint>
+    </mat-form-field>
+  </span>
+</mat-toolbar> -->
