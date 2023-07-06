@@ -10,7 +10,23 @@
   justify-content: flex-start;
 }
 
+.mobile-actions {
+  display: none;
+}
+
 @media screen and (max-width: 598px) {
+  .desktop-actions {
+    display: none;
+  }
+
+  .mobile-actions {
+    // width: 80%;
+    display: inline-block;
+    // justify-content: flex-end;
+    // flex-direction: row;
+    // align-items: center;
+  }
+
   .mat-mdc-table {
     // height: 100%;
     // border: 0;
@@ -46,6 +62,24 @@
     padding: 0.1rem;
   }
 
+  .mat-mdc-table .mat-mdc-cell:last-child {
+    height: 48px;
+  }
+
+  .mat-mdc-icon-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mat-mdc-icon-button .mat-mdc-button-touch-target {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mat-mdc-icon-button.mat-mdc-button-base {
+    padding: 6px;
+  }
+
   .mat-mdc-table .mat-mdc-cell:before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -63,9 +97,9 @@
     border-bottom: 0;
   }
 
-  .mat-mdc-table .mat-mdc-cell:first-child {
-    margin-top: 4%;
-  }
+  // .mat-mdc-table .mat-mdc-cell:first-child {
+  //   margin-top: 4%;
+  // }
 
   :host ::ng-deep .mat-mdc-paginator-container {
     padding-bottom: 50px;

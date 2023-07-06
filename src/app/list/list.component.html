@@ -50,12 +50,28 @@
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let car" data-label="Actions">
           <app-dropdown
+            class="desktop-actions"
             (edit)="editCar(car)"
             (delete)="deleteCar(car)"
           ></app-dropdown>
+          <ng-container>
+            <button
+              mat-icon-button
+              (click)="editCar(car)"
+              class="mobile-actions"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              (click)="deleteCar(car)"
+              class="mobile-actions"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </ng-container>
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
