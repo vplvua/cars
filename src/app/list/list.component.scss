@@ -33,6 +33,9 @@
     vertical-align: middle;
   }
 
+  .mat-mdc-table .mdc-data-table__header-row {
+    display: none;
+  }
   // .mat-mdc-table .mat-mdc-row:nth-child(even) {
   //   background: rgb(74, 74, 74);
   // }
