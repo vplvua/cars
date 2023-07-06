@@ -10,3 +10,28 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+@media screen and (max-width: 598px) {
+  // .mat-dialog-content .mat-mdc-dialog-content .mdc-dialog__content {
+  //   max-height: unset;
+  // }
+
+  // .mat-mdc-dialog-content {
+  //   max-height: unset;
+  // }
+
+  .cdk-overlay-container .mat-mdc-dialog-container {
+    position: absolute;
+    left: 10%;
+  }
+
+  .mdc-dialog {
+    position: fixed;
+    height: auto;
+    width: auto;
+  }
+
+  .cdk-overlay-container .mat-mdc-dialog-container .mdc-dialog__surface {
+    height: fit-content;
+  }
+}

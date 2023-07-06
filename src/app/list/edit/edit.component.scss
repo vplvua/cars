@@ -6,4 +6,13 @@
   .mat-mdc-dialog-content {
     max-height: unset;
   }
+
+  .cdk-overlay-container .mat-mdc-dialog-container {
+    position: absolute;
+    left: 10%;
+  }
+
+  .mdc-dialog {
+    position: fixed;
+  }
 }
