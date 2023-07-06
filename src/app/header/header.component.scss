@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // height: 4rem;
   z-index: 1;
   position: relative;
   padding: 0 1rem;
@@ -23,15 +22,8 @@
 
   .header__search {
     min-width: 40%;
-    // display: flex;
-    // padding: 0.5rem;
     text-align: right;
-    // align-items: center;
   }
-
-  // .header__search {
-  //   justify-content: flex-end;
-  // }
 }
 
 .add-button {
@@ -41,18 +33,9 @@
   z-index: 1;
 }
 
-// mat-toolbar {
-//   padding: 1rem;
-// }
-
 .spacer {
   flex: 1 2 auto;
 }
-
-// img {
-//   width: 7rem;
-//   margin-right: 1rem;
-// }
 
 @media screen and (max-width: 598px) {
   .header {
@@ -65,9 +48,6 @@
 
   img {
     display: none;
-    // height: 1px;
-    // margin: -1px;
-    // overflow: hidden;
   }
 
   .add-button {

@@ -20,25 +20,17 @@
   }
 
   .mobile-actions {
-    // width: 80%;
     display: inline-block;
-    // justify-content: flex-end;
-    // flex-direction: row;
-    // align-items: center;
   }
 
   .mat-mdc-table {
-    // height: 100%;
-    // border: 0;
     vertical-align: middle;
   }
 
   .mat-mdc-table .mdc-data-table__header-row {
     display: none;
   }
-  // .mat-mdc-table .mat-mdc-row:nth-child(even) {
-  //   background: rgb(74, 74, 74);
-  // }
+
   .mat-mdc-table .mat-mdc-row:nth-child(odd) {
     background: rgb(74, 74, 74);
   }
@@ -48,20 +40,15 @@
   }
 
   .mat-mdc-table .mat-mdc-row {
-    // border-bottom: 5px solid #ddd;
     height: 220px;
     display: block;
     padding: 1rem;
   }
 
   .mat-mdc-table .mat-mdc-cell {
-    // border-bottom: 1px solid #ddd;
     display: block;
-    // font-size: 1em;
     text-align: right;
-    // font-weight: bold;
     height: 24px;
-    // margin-bottom: 4%;
     padding: 0.1rem;
   }
 
@@ -84,25 +71,14 @@
   }
 
   .mat-mdc-table .mat-mdc-cell:before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
     content: attr(data-label);
     float: left;
     text-transform: uppercase;
-    // font-weight: normal;
-
-    // font-size: 0.85em;
   }
 
   .mat-mdc-table .mat-mdc-cell:last-child {
     border-bottom: 0;
   }
-
-  // .mat-mdc-table .mat-mdc-cell:first-child {
-  //   margin-top: 4%;
-  // }
 
   :host ::ng-deep .mat-mdc-paginator-container {
     padding-bottom: 50px;
